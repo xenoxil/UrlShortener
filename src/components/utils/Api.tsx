@@ -1,4 +1,4 @@
-export class MainApi {
+export class Api {
   _options: any;
   _headers: any;
   constructor(options: any) {
@@ -62,7 +62,7 @@ export class MainApi {
     });
   }
 
-  //получаем данные профайла
+  //получаем короткую ссылку
   getSqueeze() {
     return fetch(`${this._options.baseUrl}/squeeze`, {
       headers: this._options.headers,
@@ -79,7 +79,7 @@ export class MainApi {
         console.log(err);
       });
   }
-  //получаем данные профайла
+  //получаем статистику по ссылкам
   getStatistics() {
     return fetch(`${this._options.baseUrl}/statistics`, {
       headers: this._options.headers,
@@ -98,7 +98,7 @@ export class MainApi {
   }
 }
 
-const mainApi = new MainApi({
+const mainApi = new Api({
   // baseUrl: 'http://localhost:3001',
   baseUrl: 'http://79.143.31.216/',
   headers: {
