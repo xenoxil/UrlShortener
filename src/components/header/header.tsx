@@ -1,9 +1,12 @@
 function Header(props: any) {
+
+
+    
   return (
     <section className="section__header">
       <div className="header__container">
-        <p className="header__userEmail">{/*props.userEmail*/ `xe@ya.ru`}</p>
-        <button className="header__logoutBtn">Выйти</button>
+        <p className="header__userEmail">{props.userEmail}</p>
+        <button className="header__logoutBtn" type='reset' onClick={props.logOut}>Выйти</button>
       </div>
     </section>
   );

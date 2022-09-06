@@ -1,9 +1,9 @@
 body{
   margin:0;
 }
-@import url('./components/reglog/Reglog.css');
-@import url('./components/main/Main.css');
-@import url('./components/table/Table.css');
-@import url('./components/footer/Footer.css');
-@import url('./components/header/header.css');
+@import url('./components/Reglog/Reglog.css');
+@import url('./components/Main/Main.css');
+@import url('./components/Table/Table.css');
+@import url('./components/Footer/Footer.css');
+@import url('./components/Header/header.css');
 @import url('./components/Form/Form.css');

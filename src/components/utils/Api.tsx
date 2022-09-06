@@ -8,15 +8,12 @@ export class Api {
   }
 
   register(email: string, password: string) {
-    return fetch(`${this._options.baseUrl}/register`, {
+    return fetch(`${this._options.baseUrl}/register?username=${email}&password=${password}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -29,44 +26,29 @@ export class Api {
   login(email: string, password: string) {
     return fetch(`${this._options.baseUrl}/login`, {
       method: 'POST',
-      credentials: 'include',
       headers: {
+        accept: 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
+      body: `username=${email}&password=${password}`,
     }).then((res) => {
       if (res.ok) {
+        console.log('res ok');
         return res.json();
       } else {
-        return Promise.reject(res.status);
-      }
-    });
-  }
-
-  logout() {
-    return fetch(`${this._options.baseUrl}/logout`, {
-      method: 'delete',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
+        console.log('res  ne ok');
         return Promise.reject(res.status);
       }
     });
   }
 
   //получаем короткую ссылку
-  getSqueeze() {
-    return fetch(`${this._options.baseUrl}/squeeze`, {
-      headers: this._options.headers,
-      credentials: 'include',
+  getSqueeze(link: string, token: string) {
+    return fetch(`${this._options.baseUrl}/squeeze?link=${link}`, {
+      method: 'POST',
+      headers: { 
+        accept: 'application/json',
+       authorization: 'Bearer ' + token },      
     })
       .then((res) => {
         if (res.ok) {
@@ -80,10 +62,12 @@ export class Api {
       });
   }
   //получаем статистику по ссылкам
-  getStatistics() {
-    return fetch(`${this._options.baseUrl}/statistics`, {
-      headers: this._options.headers,
-      credentials: 'include',
+  getStatistics(token: string) {
+    return fetch(`${this._options.baseUrl}/statistics?order=asc_short&offset=1&limit=10`, {
+      headers: {
+        accept: 'application/json',
+        authorization: 'Bearer ' + token,
+      },
     })
       .then((res) => {
         if (res.ok) {
@@ -100,7 +84,7 @@ export class Api {
 
 const mainApi = new Api({
   // baseUrl: 'http://localhost:3001',
-  baseUrl: 'http://79.143.31.216/',
+  baseUrl: 'http://79.143.31.216',
   headers: {
     'Content-Type': 'application/json',
   },

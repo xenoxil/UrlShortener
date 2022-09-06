@@ -1,7 +1,7 @@
 function Table(props: any) {
   return (
     <table className="table" border={1}>
-      <caption className="table__header">Your link and transition stats</caption>
+      <caption className="table__header">Your links and transition stats</caption>
       <tbody>
       <tr className="table__subHeader">
         <th className="table__linkIdColumn">ID</th>
