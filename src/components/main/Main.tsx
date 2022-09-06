@@ -1,21 +1,20 @@
-import DataGrid from 'react-data-grid';
+import Table from "../table/Table";
+import { testLinks } from "../utils/testLinks";
+import Footer from "../footer/Footer";
+import Header from "../header/header";
+import Form from "../Form/Form";
 
 
-function Main() {
-    const columns = [
-        { key: 'Link', name: 'Link' },
-        { key: 'ShortLink', name: 'ShortLink' },
-        { key: 'TrasitionCount', name: 'TrasitionCount' }
-      ];
-      
-      const rows = [
-        { id: 0, title: 'Example' },
-        { id: 1, title: 'Demo' }
-      ];
+
+function Main(props:any) {
+   
   
   return (
     <section className="section__main">
-       <DataGrid columns={columns} rows={rows} />
+      <Header/>
+      <Form/>
+       <Table links={[]}/>
+       <Footer/>
     </section>
   );
 }

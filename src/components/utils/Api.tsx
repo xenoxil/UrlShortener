@@ -47,7 +47,7 @@ export class Api {
   }
 
   logout() {
-    return fetch(`${this._options.baseUrl}/signout`, {
+    return fetch(`${this._options.baseUrl}/logout`, {
       method: 'delete',
       credentials: 'include',
       headers: {

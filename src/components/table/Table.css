@@ -1,0 +1,44 @@
+.table{
+    width:1000px;
+    margin:100px auto 0;
+    background-color: #2a2b38;   
+}
+
+.table__header{    
+    background-color: #2a2b38;
+    color: #ffeba7
+}
+
+
+.table__subHeader{
+   color: #ffeba7
+}
+
+.table__linkIdColumn{
+    width:100px;
+}
+
+
+
+.table__linkColumn{
+   width:500px;    
+}
+
+.table__shortLinkColumn{
+   width:300px;
+}
+
+.table__amountColumn{
+    width:80px;
+}
+
+.table__amountCell{
+    width:100px;
+}
+
+.table__linkCell{
+    text-overflow: ellipsis;    
+    overflow: hidden;
+    width:500px;    
+}
+
