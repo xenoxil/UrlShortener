@@ -48,8 +48,6 @@ function App() {
           mainApi
             .getStatistics(localStorage.getItem('access_token') ?? '', 500, 5000)
             .then((res: any) => {
-              console.log(res);
-              console.log(stats.concat(res));
               setStats(stats.concat(res));
               setMiddleResult(stats.concat(res));
             })

@@ -33,10 +33,8 @@ export class Api {
       body: `username=${email}&password=${password}`,
     }).then((res) => {
       if (res.ok) {
-        console.log('res ok');
         return res.json();
       } else {
-        console.log('res  ne ok');
         return Promise.reject(res.status);
       }
     });
