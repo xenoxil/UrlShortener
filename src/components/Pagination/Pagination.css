@@ -1,0 +1,31 @@
+.pagination{
+    list-style: none;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.pagination__page_invisible{
+    display:none;
+}
+
+.pagination__span_invisible{
+    display:none;
+}
+
+.pagination__page-link{
+    color:white;
+    border:0;
+    background-color: #1f2029;
+    margin:0 10px;
+}
+
+.pagination__page-link_active{
+    color:#ffeba7;
+    border:1px solid   #ffeba7;
+    border-radius: 15px;
+}
+
+
+

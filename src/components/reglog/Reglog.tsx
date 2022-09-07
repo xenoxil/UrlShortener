@@ -55,7 +55,7 @@ function Reglog(props:any) {
                     ref={passwordLog}
                   />
                 </div>
-                <button className="reglog__submitBtn" onClick={handleSubmitLogin}>submit</button>
+                <button className="reglog__submitBtn" onClick={handleSubmitLogin} disabled={props.buttonDisableState}>submit</button>
               </form>
             </div>
           </div>
@@ -83,7 +83,7 @@ function Reglog(props:any) {
                     ref={passwordReg}
                   />
                 </div>
-                <button className="reglog__submitBtn"onClick={handleSubmitRegister}>submit</button>
+                <button className="reglog__submitBtn"onClick={handleSubmitRegister} disabled={props.buttonDisableState}>submit</button>
               </form>
             </div>
           </div>

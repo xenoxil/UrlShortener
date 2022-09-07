@@ -28,7 +28,7 @@ function Table(props: any) {
             <input className="table__filterLink" type="text" ref={linkFilter} />
           </th>
           <th>
-            <button type="button" className="table__filterBtn" onClick={filterClick}>
+            <button type="button" className="table__filterBtn" onClick={filterClick} disabled={props.buttonDisableState}>
               Filter
             </button>
           </th>
@@ -56,7 +56,8 @@ function Table(props: any) {
                   <p
                     className="table__shortLinkCell"
                     onClick={() => {
-                      navigator.clipboard.writeText(`http://79.143.31.216/s/${linkObject.short}`);
+                      navigator.clipboard.writeText(`http://79.143.31.216/s/${linkObject.short}`)
+                      props.handlingNotification('Text has been copied successfully');
                     }}>{`http://79.143.31.216/s/${linkObject.short}`}</p>
                 </td>
                 <td className="table__amountCell">{linkObject.counter}</td>

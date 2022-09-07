@@ -54,16 +54,13 @@ export class Api {
         if (res.ok) {
           return res.json();
         } else {
-          return Promise.reject(`Ошибка: ${res.status}`);
+          return Promise.reject(`${res.status}`);
         }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      })      
   }
   //получаем статистику по ссылкам
   getStatistics(token: string) {
-    return fetch(`${this._options.baseUrl}/statistics?order=asc_short&offset=1&limit=10`, {
+    return fetch(`${this._options.baseUrl}/statistics?order=asc_short&offset=1&limit=500`, {
       headers: {
         accept: 'application/json',
         authorization: 'Bearer ' + token,

@@ -1,8 +1,8 @@
-function Footer(props:any) {
+function Footer() {
   return (
     <section className="footer">           
         <div className="footer__container">
-          <p className="footer__copyright">&copy;2022.Юрий Степанов</p>
+          <p className="footer__copyright">&copy;2022.Yuriy Stepanov</p>
           <nav className="footer__navigation">
             <ul className="footer__links">              
               <li className="footer__link">
