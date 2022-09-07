@@ -59,8 +59,8 @@ export class Api {
       })      
   }
   //получаем статистику по ссылкам
-  getStatistics(token: string) {
-    return fetch(`${this._options.baseUrl}/statistics?order=asc_short&offset=1&limit=500`, {
+  getStatistics(token: string,offset:number,limit:number) {
+    return fetch(`${this._options.baseUrl}/statistics?order=asc_short&offset=${offset}&limit=${limit}`, {
       headers: {
         accept: 'application/json',
         authorization: 'Bearer ' + token,

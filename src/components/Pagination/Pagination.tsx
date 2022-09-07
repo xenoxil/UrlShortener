@@ -1,8 +1,9 @@
+
 function Pagination(props: any) {
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(props.totalLinksNow / props.linksPerPage); i++) {
-    pageNumbers.push(i);
-  } 
+  
+
+
+   
 
   return (
     <ul className="pagination">
@@ -16,14 +17,14 @@ function Pagination(props: any) {
         </button>
       </li>
       <span className={props.currentPage - 1 > 5 ? 'pagination__span' : 'pagination__span_invisible'}>. . .</span>
-      {pageNumbers.map((page) => {
-        if (page === 1 || page === pageNumbers.length) {
+      {props.pages.map((page:any) => {
+        if (page === 1 || page === props.pages.length) {
           return null;
         }
         return (
           <li
             className={
-              page === pageNumbers.length ||
+              page === props.pages.length ||
               (props.currentPage >= page && props.currentPage - page < 5) ||
               (page >= props.currentPage && page - props.currentPage < 5)
                 ? 'pagination__page'
@@ -42,17 +43,17 @@ function Pagination(props: any) {
           </li>
         );
       })}
-      <span className={pageNumbers.length - props.currentPage > 5 ? 'pagination__span' : 'pagination__span_invisible'}>
+      <span className={props.pages.length - props.currentPage > 5 ? 'pagination__span' : 'pagination__span_invisible'}>
         . . .
       </span>
-      <li className={pageNumbers.length>1 ? 'pagination__page'
+      <li className={props.pages.length>1 ? 'pagination__page'
                 : 'pagination__page pagination__page_invisible'}>
         <button
           className={
-            props.currentPage === pageNumbers.length ? 'pagination__page-link pagination__page-link_active' : 'pagination__page-link'
+            props.currentPage === props.pages.length ? 'pagination__page-link pagination__page-link_active' : 'pagination__page-link'
           }
-          onClick={() => props.paginate(pageNumbers.length)}>
-          {pageNumbers.length}
+          onClick={() => props.paginate(props.pages.length)}>
+          {props.pages.length}
         </button>
       </li>      
     </ul>

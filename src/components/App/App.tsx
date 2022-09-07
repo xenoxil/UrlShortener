@@ -22,6 +22,7 @@ function App() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [linksPerPage] = useState(10);
+  const [pages,setPages]=useState<number[]>([]);
 
   const lastLinkIndex = currentPage * linksPerPage;
   const firstLinkIndex = lastLinkIndex - linksPerPage;  
@@ -39,7 +40,7 @@ function App() {
       setLoggedIn(true);
       navigate('/');
       setIsLoading(true);
-      mainApi.getStatistics(localStorage.getItem('access_token') ?? '')
+      mainApi.getStatistics((localStorage.getItem('access_token') ?? ''),1,500)
     .then((stats)=>{
       setStats(stats);
       setMiddleResult(stats);
@@ -47,11 +48,20 @@ function App() {
       setIsLoading(false);      
     })
       .catch((err) => console.log('Ошибка:', err));
-  }}, [user]);
+  }
+}, [user]);
 
   useEffect(()=>{
     setRenderedLinks(middleResult.slice(firstLinkIndex,lastLinkIndex))
   },[currentPage,middleResult])
+
+  useEffect(()=>{
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(middleResult.length / linksPerPage); i++) {
+        pageNumbers.push(i);
+    }
+    setPages(pageNumbers);
+  },[middleResult])
 
   function handleLoginClick(email: string, password: string) {
     setButtonDisableState(true);
@@ -121,8 +131,7 @@ function App() {
 
    function handleFiltering(ID:number,link:string,countFilter:string){
     setButtonDisableState(true);
-      let filteredStats=stats;
-      debugger;
+      let filteredStats=stats;      
           if(ID>0){
             filteredStats=stats.filter((linkObject:any)=>{
             return linkObject.id.toString().includes(ID)
@@ -182,6 +191,8 @@ function App() {
             paginate={paginate}
             linksPerPage={linksPerPage}
             currentPage={currentPage}
+            pages={pages}
+            setPages={setPages}
              />} />
         </Route>
       </Routes>

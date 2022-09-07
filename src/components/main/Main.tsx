@@ -15,18 +15,17 @@ function Main(props: any) {
       <Preloader/>     
       
       :(<div>
-        <Table
-      links={props.links}
+        <Table      
       filtering={props.filtering}
-      renderedLinks={props.renderedLinks}
-      isFiltered={props.isFiltered}
+      renderedLinks={props.renderedLinks}      
       buttonDisableState={props.buttonDisableState}
       handlingNotification={props.handlingNotification}
     />
-    <Pagination totalLinksNow={props.links.length}
+    <Pagination 
     paginate={props.paginate}
     linksPerPage={props.linksPerPage}
     currentPage={props.currentPage}
+    pages={props.pages}    
     />
       </div>
       )}
