@@ -15,7 +15,13 @@
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 
-urlshortener-omega.vercel.app -сайт
+http://51.250.96.177/ -сайт
+
+Инструкция по развертыванию:
+1.Клонируем репозиторий
+2.запускаем установку зависимостей командой npm install
+3.npm run start для запуска проекта
+
 
 
 
