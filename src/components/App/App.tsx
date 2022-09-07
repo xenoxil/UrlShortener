@@ -13,6 +13,9 @@ function App() {
   const navigate = useNavigate();
   const [token,setToken]=useState('');
   const [shortLink,setShortLink]=useState('');
+  const [filtered,setFiltered]=useState([]);
+  const [notificationVisibility, setNotificationVisibility] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState('');
 
 
   React.useEffect(() => {
@@ -25,6 +28,7 @@ function App() {
       mainApi.getStatistics(localStorage.getItem('access_token') ?? '')
     .then((stats)=>{
       setStats(stats);
+      console.log(stats);
     })
       .catch((err) => console.log('Ошибка:', err));
   }}, [user]);
@@ -68,6 +72,33 @@ function App() {
      })
   }
 
+   function handleFiltering(ID:number,link:string,countFilter:string){
+      let filteredStats=stats;
+      debugger;
+          if(ID>0){
+            filteredStats=stats.filter((linkObject:any)=>{
+            return linkObject.id.toString().includes(ID)
+          })}
+          if(link.length>0){
+            filteredStats=filteredStats.filter((linkObject:any)=>{
+              return linkObject.target.includes(link)
+            })
+          }
+          if(countFilter==='ASC'){
+            filteredStats.sort((a:any,b:any)=>{
+              return a.counter-b.counter
+            })          
+          }
+          else if(countFilter==='DESC'){
+            filteredStats.sort((a:any,b:any)=>{
+              return b.counter-a.counter
+            })   
+          }          
+            setFiltered(filteredStats);
+         
+                             
+   }
+
   return (
     <div className="App">
       <Routes>
@@ -78,7 +109,9 @@ function App() {
           links={stats}
           shortLink={shortLink}
           squeeze={squeezeLink}
-          logOut={handleLogoutClick} />} />
+          logOut={handleLogoutClick}
+          filtering={handleFiltering}
+          filtered={filtered} />} />
         </Route>
       </Routes>
     </div>
