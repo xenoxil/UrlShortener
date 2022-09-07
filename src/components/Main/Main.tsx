@@ -11,23 +11,23 @@ function Main(props: any) {
     <section className="section__main">
       <Header userEmail={props.userEmail} logOut={props.logOut} />
       <Form shortLink={props.shortLink} squeeze={props.squeeze} buttonDisableState={props.buttonDisableState} />
-      {props.isLoading ? 
-      <Preloader/>     
-      
-      :(<div>
-        <Table      
-      filtering={props.filtering}
-      renderedLinks={props.renderedLinks}      
-      buttonDisableState={props.buttonDisableState}
-      handlingNotification={props.handlingNotification}
-    />
-    <Pagination 
-    paginate={props.paginate}
-    linksPerPage={props.linksPerPage}
-    currentPage={props.currentPage}
-    pages={props.pages}    
-    />
-      </div>
+      {props.isLoading ? (
+        <Preloader />
+      ) : (
+        <div>
+          <Table
+            filtering={props.filtering}
+            renderedLinks={props.renderedLinks}
+            buttonDisableState={props.buttonDisableState}
+            handlingNotification={props.handlingNotification}
+          />
+          <Pagination
+            paginate={props.paginate}
+            linksPerPage={props.linksPerPage}
+            currentPage={props.currentPage}
+            pages={props.pages}
+          />
+        </div>
       )}
       <Footer />
       <Notification isVisible={props.isNotificationVisible} notificationMessage={props.notificationMessage} />

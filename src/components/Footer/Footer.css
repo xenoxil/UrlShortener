@@ -1,62 +1,58 @@
-.footer {   
-    width: 1000px;
-    margin: 0 auto;
-  }
-  
-  .footer__title {    
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e8e8e8;
-    font-family: Inter, Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 16px;
-    /* identical to box height */  
-    text-align: center;  
-    color: #a0a0a0;
-  }
- 
-  .footer__container {
-    margin: 79px 0 0;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  
-  .footer__copyright {
-    font-family: Inter, Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 16px;
-    /* identical to box height */
-    color: #a0a0a0;
-  }
-  
-  .footer__links {
-    list-style: none;
-    display: flex;
-  }  
-  
-  .footer__link {
-    text-decoration: none;
-    margin: 0;
-    margin-right: 20px;
-    font-family: Inter, Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 16px;
-    color: #000000;
-  }
-  
-  .footer__link:visited {
-    color: #000000;
-  }
-  
- 
-  .footer__link:last-child {
-    margin-right: 0;
-  }
-  
- 
+.footer {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.footer__title {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e8e8e8;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  /* identical to box height */
+  text-align: center;
+  color: #a0a0a0;
+}
+
+.footer__container {
+  margin: 79px 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__copyright {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  /* identical to box height */
+  color: #a0a0a0;
+}
+
+.footer__links {
+  list-style: none;
+  display: flex;
+}
+
+.footer__link {
+  text-decoration: none;
+  margin: 0;
+  margin-right: 20px;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+}
+
+.footer__link:visited {
+  color: #000000;
+}
+
+.footer__link:last-child {
+  margin-right: 0;
+}

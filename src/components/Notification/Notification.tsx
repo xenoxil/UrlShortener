@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Notification(props:any) {
+function Notification(props: any) {
   return (
     <div
       className={

@@ -3,11 +3,11 @@ import React, { useRef } from 'react';
 import { loginConfig } from '../../utils/constants';*/
 import Notification from '../Notification/Notification';
 
-function Reglog(props:any) {
+function Reglog(props: any) {
   const emailReg = useRef<any>();
   const passwordReg = useRef<any>();
   const emailLog = useRef<any>();
-  const passwordLog= useRef<any>();
+  const passwordLog = useRef<any>();
 
   /* React.useEffect(() => {
     const loginForm = document.getElementById('loginForm');
@@ -15,12 +15,12 @@ function Reglog(props:any) {
     loginFormValidation.enableValidation();
   }, []);*/
 
-  function handleSubmitLogin(e:any):void {
+  function handleSubmitLogin(e: any): void {
     e.preventDefault();
     props.onLogin(emailLog.current.value, passwordLog.current.value);
   }
 
-  function handleSubmitRegister(e:any): void{
+  function handleSubmitRegister(e: any): void {
     e.preventDefault();
     props.onRegister(emailReg.current.value, passwordReg.current.value);
   }
@@ -55,7 +55,9 @@ function Reglog(props:any) {
                     ref={passwordLog}
                   />
                 </div>
-                <button className="reglog__submitBtn" onClick={handleSubmitLogin} disabled={props.buttonDisableState}>submit</button>
+                <button className="reglog__submitBtn" onClick={handleSubmitLogin} disabled={props.buttonDisableState}>
+                  submit
+                </button>
               </form>
             </div>
           </div>
@@ -83,7 +85,12 @@ function Reglog(props:any) {
                     ref={passwordReg}
                   />
                 </div>
-                <button className="reglog__submitBtn"onClick={handleSubmitRegister} disabled={props.buttonDisableState}>submit</button>
+                <button
+                  className="reglog__submitBtn"
+                  onClick={handleSubmitRegister}
+                  disabled={props.buttonDisableState}>
+                  submit
+                </button>
               </form>
             </div>
           </div>
@@ -91,7 +98,6 @@ function Reglog(props:any) {
       </div>
       <Notification isVisible={props.isNotificationVisible} notificationMessage={props.notificationMessage} />
     </section>
-    
   );
 }
 

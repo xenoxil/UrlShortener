@@ -46,20 +46,20 @@ export class Api {
   getSqueeze(link: string, token: string) {
     return fetch(`${this._options.baseUrl}/squeeze?link=${link}`, {
       method: 'POST',
-      headers: { 
+      headers: {
         accept: 'application/json',
-       authorization: 'Bearer ' + token },      
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`${res.status}`);
-        }
-      })      
+        authorization: 'Bearer ' + token,
+      },
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return Promise.reject(`${res.status}`);
+      }
+    });
   }
   //получаем статистику по ссылкам
-  getStatistics(token: string,offset:number,limit:number) {
+  getStatistics(token: string, offset: number, limit: number) {
     return fetch(`${this._options.baseUrl}/statistics?order=asc_short&offset=${offset}&limit=${limit}`, {
       headers: {
         accept: 'application/json',
@@ -81,7 +81,7 @@ export class Api {
 
 const mainApi = new Api({
   // baseUrl: 'http://localhost:3001',
-  baseUrl: 'https://79.143.31.216',
+  baseUrl: 'http://79.143.31.216',
   headers: {
     'Content-Type': 'application/json',
   },

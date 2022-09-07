@@ -1,36 +1,35 @@
 .notification__container {
-    border-radius: 4px;
-    background-color: #ffebee;
-    max-width: 200px;
-    max-height: 60px;
-    min-width: 100px;
-    min-height: 30px;
-    position: fixed;
-    right: 50px;
-    bottom: 50px;
-    z-index: 5;
-    align-items: center;
-    justify-content: center;
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.5s linear;
-    display: flex;
-    opacity: 0;
-    pointer-events: none;
-    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
-  }
-  .notification__message {
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 12px;
-    color: black;
-    margin: auto;
-  }
-  
-  .notification__container_visible {
-    visibility: visible;
-    opacity: 1;
-  }
-  
+  border-radius: 4px;
+  background-color: #ffebee;
+  max-width: 200px;
+  max-height: 60px;
+  min-width: 100px;
+  min-height: 30px;
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  z-index: 5;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s linear;
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
+}
+.notification__message {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 12px;
+  color: black;
+  margin: auto;
+}
+
+.notification__container_visible {
+  visibility: visible;
+  opacity: 1;
+}

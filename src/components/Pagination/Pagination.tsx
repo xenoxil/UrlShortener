@@ -1,10 +1,4 @@
-
 function Pagination(props: any) {
-  
-
-
-   
-
   return (
     <ul className="pagination">
       <li className="pagination__page">
@@ -17,7 +11,7 @@ function Pagination(props: any) {
         </button>
       </li>
       <span className={props.currentPage - 1 > 5 ? 'pagination__span' : 'pagination__span_invisible'}>. . .</span>
-      {props.pages.map((page:any) => {
+      {props.pages.map((page: any) => {
         if (page === 1 || page === props.pages.length) {
           return null;
         }
@@ -46,16 +40,17 @@ function Pagination(props: any) {
       <span className={props.pages.length - props.currentPage > 5 ? 'pagination__span' : 'pagination__span_invisible'}>
         . . .
       </span>
-      <li className={props.pages.length>1 ? 'pagination__page'
-                : 'pagination__page pagination__page_invisible'}>
+      <li className={props.pages.length > 1 ? 'pagination__page' : 'pagination__page pagination__page_invisible'}>
         <button
           className={
-            props.currentPage === props.pages.length ? 'pagination__page-link pagination__page-link_active' : 'pagination__page-link'
+            props.currentPage === props.pages.length
+              ? 'pagination__page-link pagination__page-link_active'
+              : 'pagination__page-link'
           }
           onClick={() => props.paginate(props.pages.length)}>
           {props.pages.length}
         </button>
-      </li>      
+      </li>
     </ul>
   );
 }

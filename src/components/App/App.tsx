@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Reglog from '../Reglog/Reglog';
 import Main from '../Main/Main';
@@ -52,7 +51,7 @@ function App() {
               console.log(res);
               console.log(stats.concat(res));
               setStats(stats.concat(res));
-              setMiddleResult(stats.concat(res));              
+              setMiddleResult(stats.concat(res));
             })
             .catch((err) => console.log('Ошибка:', err));
         })
@@ -124,8 +123,8 @@ function App() {
       .then((res: any) => {
         setShortLink(`http://79.143.31.216/s/${res.short}`);
         handlingNotification('Link has been squeezed');
-        setStats([res,...stats]);
-        setMiddleResult([res,...stats]);
+        setStats([res, ...stats]);
+        setMiddleResult([res, ...stats]);
       })
       .catch((err) => {
         if (err === '422') {
