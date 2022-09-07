@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import Reglog from '../Reglogы/Reglog';
-import Main from '../Mainы/Main';
+import Reglog from '../Reglog/Reglog';
+import Main from '../Main/Main';
 import mainApi from '../../utils/Api';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoutes';
 
