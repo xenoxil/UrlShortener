@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 /*import { FormValidator } from '../FormValidator';
-import { loginConfig } from '../../utils/constants';
-import Notification from '../Notification/Notification';*/
+import { loginConfig } from '../../utils/constants';*/
+import Notification from '../Notification/Notification';
 
 function Reglog(props:any) {
   const emailReg = useRef<any>();
@@ -89,7 +89,9 @@ function Reglog(props:any) {
           </div>
         </div>
       </div>
+      <Notification isVisible={props.isNotificationVisible} notificationMessage={props.notificationMessage} />
     </section>
+    
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 function Table(props: any) {
   const idFilter = useRef<any>();
@@ -58,27 +58,6 @@ function Table(props: any) {
                     onClick={() => {
                       navigator.clipboard.writeText(`http://79.143.31.216/s/${linkObject.short}`);
                     }}>{`http://79.143.31.216/s/${linkObject.short}`}</p>
-                </td>
-                <td className="table__amountCell">{linkObject.counter}</td>
-              </tr>
-            );
-          })
-        ) : props.links.length > 0 ? (
-          props.links.map((linkObject: any) => {
-            return (
-              <tr className="table__row" key={linkObject.id}>
-                <td className="table__linkIdCell">{linkObject.id}</td>
-                <td className="table__linkCell">
-                  <p className="table__linkCell">{linkObject.target}</p>
-                </td>
-                <td className="table__shortLinkCell">
-                  <p
-                    className="table__shortLinkCell"
-                    onClick={() => {
-                      navigator.clipboard.writeText(`http://79.143.31.216/s/${linkObject.short}`);
-                    }}>
-                    {`http://79.143.31.216/s/${linkObject.short}`}
-                  </p>
                 </td>
                 <td className="table__amountCell">{linkObject.counter}</td>
               </tr>
