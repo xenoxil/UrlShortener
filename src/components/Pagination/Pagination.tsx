@@ -45,7 +45,8 @@ function Pagination(props: any) {
       <span className={pageNumbers.length - props.currentPage > 5 ? 'pagination__span' : 'pagination__span_invisible'}>
         . . .
       </span>
-      <li className="pagination__page">
+      <li className={pageNumbers.length>1 ? 'pagination__page'
+                : 'pagination__page pagination__page_invisible'}>
         <button
           className={
             props.currentPage === pageNumbers.length ? 'pagination__page-link pagination__page-link_active' : 'pagination__page-link'

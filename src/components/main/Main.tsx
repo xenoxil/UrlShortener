@@ -18,7 +18,7 @@ function Main(props: any) {
         <Table
       links={props.links}
       filtering={props.filtering}
-      filtered={props.filtered}
+      renderedLinks={props.renderedLinks}
       isFiltered={props.isFiltered}
       buttonDisableState={props.buttonDisableState}
       handlingNotification={props.handlingNotification}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Reglog from '../Reglog/Reglog';
@@ -12,23 +12,22 @@ function App() {
   const [stats, setStats] = useState([]);
   const navigate = useNavigate();
   const [token,setToken]=useState('');
-  const [shortLink,setShortLink]=useState('');
-  const [filtered,setFiltered]=useState([]);
+  const [shortLink,setShortLink]=useState('');  
   const [notificationVisibility, setNotificationVisibility] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState(''); 
   const [buttonDisableState, setButtonDisableState] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [middleResult,setMiddleResult] = useState([]);
+  const [renderedLinks, setRenderedLinks] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [linksPerPage] = useState(10);
 
   const lastLinkIndex = currentPage * linksPerPage;
-  const firstLinkIndex = lastLinkIndex - linksPerPage;
-  const currentLinks = stats.slice(firstLinkIndex, lastLinkIndex);
+  const firstLinkIndex = lastLinkIndex - linksPerPage;  
 
   function paginate(pageNumber:number){
-    setCurrentPage(pageNumber)
-    handlingNotification(`${pageNumber}`);
+    setCurrentPage(pageNumber);
   }
 
 
@@ -43,11 +42,16 @@ function App() {
       mainApi.getStatistics(localStorage.getItem('access_token') ?? '')
     .then((stats)=>{
       setStats(stats);
-      setFiltered(stats.slice(firstLinkIndex, lastLinkIndex));
+      setMiddleResult(stats);
+      setRenderedLinks(stats.slice(firstLinkIndex,lastLinkIndex))
       setIsLoading(false);      
     })
       .catch((err) => console.log('Ошибка:', err));
   }}, [user]);
+
+  useEffect(()=>{
+    setRenderedLinks(middleResult.slice(firstLinkIndex,lastLinkIndex))
+  },[currentPage,middleResult])
 
   function handleLoginClick(email: string, password: string) {
     setButtonDisableState(true);
@@ -118,6 +122,7 @@ function App() {
    function handleFiltering(ID:number,link:string,countFilter:string){
     setButtonDisableState(true);
       let filteredStats=stats;
+      debugger;
           if(ID>0){
             filteredStats=stats.filter((linkObject:any)=>{
             return linkObject.id.toString().includes(ID)
@@ -137,8 +142,9 @@ function App() {
               return b.counter-a.counter
             })   
           }          
-            setFiltered(filteredStats);
+            setMiddleResult(filteredStats);
             handlingNotification('Successful filtering')
+            setCurrentPage(1);
             setButtonDisableState(false);
    }
 
@@ -167,7 +173,7 @@ function App() {
           squeeze={squeezeLink}
           logOut={handleLogoutClick}
           filtering={handleFiltering}
-          filtered={filtered}
+          renderedLinks={renderedLinks}
           handlingNotification={handlingNotification}
           isNotificationVisible={notificationVisibility}
             notificationMessage={notificationMessage}

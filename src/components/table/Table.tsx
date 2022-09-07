@@ -44,8 +44,8 @@ function Table(props: any) {
             </select>
           </th>
         </tr>
-        {props.filtered.length > 0 ? (
-          props.filtered.map((linkObject: any) => {
+        {props.renderedLinks.length > 0 ? (
+          props.renderedLinks.map((linkObject: any) => {
             return (
               <tr className="table__row" key={linkObject.id}>
                 <td className="table__linkIdCell">{linkObject.id}</td>
