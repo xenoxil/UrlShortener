@@ -28,7 +28,7 @@ export class Api {
       method: 'POST',
       headers: {
         accept: 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/x-www-form-urlencoded',        
       },
       body: `username=${email}&password=${password}`,
     }).then((res) => {
