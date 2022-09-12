@@ -55,7 +55,7 @@ function App() {
         })
         .catch((err) => console.log('Ошибка:', err));
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     setRenderedLinks(middleResult.slice(firstLinkIndex, lastLinkIndex));
