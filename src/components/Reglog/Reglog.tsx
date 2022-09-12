@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 /*import { FormValidator } from '../FormValidator';
 import { loginConfig } from '../../utils/constants';*/
 import Notification from '../Notification/Notification';
