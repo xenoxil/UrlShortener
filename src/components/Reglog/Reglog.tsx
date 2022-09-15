@@ -9,12 +9,6 @@ function Reglog(props: any) {
   const emailLog = useRef<any>();
   const passwordLog = useRef<any>();
 
-  /* React.useEffect(() => {
-    const loginForm = document.getElementById('loginForm');
-    const loginFormValidation = new FormValidator(loginConfig, loginForm);
-    loginFormValidation.enableValidation();
-  }, []);*/
-
   function handleSubmitLogin(e: any): void {
     e.preventDefault();
     props.onLogin(emailLog.current.value, passwordLog.current.value);

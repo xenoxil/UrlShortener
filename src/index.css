@@ -1,6 +1,13 @@
 body {
   margin: 0;
 }
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
 @import url('./components/Reglog/Reglog.css');
 @import url('./components/Main/Main.css');
 @import url('./components/Table/Table.css');
