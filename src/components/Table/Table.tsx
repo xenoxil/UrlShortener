@@ -12,7 +12,7 @@ function Table(props: any) {
 
   return (
     <table className="table" border={1}>
-      <caption className="table__header">Links and transition stats</caption>
+      <caption className="table__header">Links and transition stats</caption>     
       <tbody>
         <tr className="table__subHeader">
           <th className="table__linkIdColumn">ID</th>
@@ -21,13 +21,13 @@ function Table(props: any) {
           <th className="table__amountColumn">TransitionAmount</th>
         </tr>
         <tr>
-          <th className="table__filter">
+          <td className="table__filter">
             <input className="table__filterId" type="number" ref={idFilter} />
-          </th>
-          <th>
+          </td>
+          <td>
             <input className="table__filterLink" type="text" ref={linkFilter} />
-          </th>
-          <th>
+          </td>
+          <td>
             <button
               type="button"
               className="table__filterBtn"
@@ -35,8 +35,8 @@ function Table(props: any) {
               disabled={props.buttonDisableState}>
               Filter
             </button>
-          </th>
-          <th>
+          </td>
+          <td>
             <select
               className="table__filterCount"
               name="CountSort"
@@ -46,7 +46,7 @@ function Table(props: any) {
               <option value="ASC">Ascending</option>
               <option value="DESC">Descending</option>
             </select>
-          </th>
+          </td>
         </tr>
         {props.renderedLinks.length > 0 ? (
           props.renderedLinks.map((linkObject: any) => {

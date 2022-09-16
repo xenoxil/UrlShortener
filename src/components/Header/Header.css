@@ -1,11 +1,22 @@
-.header {
+.section__header {
   min-height: 75px;
+  max-width: 1000px;
+  width:100%; 
+  margin:0 auto; 
+     
 }
 
 .header__container {
   display: flex;
   flex-direction: row;
-  margin: 15px 20px 60px 85vw;
+  margin: 15px 0 60px auto;
+  width: 170px; 
+}
+
+@media screen and (max-width: 768px) {  
+    .header__container{
+    margin:15px 0 60px auto;    
+  }
 }
 
 .header__userEmail {

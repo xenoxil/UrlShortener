@@ -68,3 +68,21 @@
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
 }
+
+@media screen and (max-width: 768px) {
+  .form__container {
+    flex-direction: column;
+  justify-content: center;
+  }
+
+  .form__inputLink {
+    margin:10px auto;
+    padding:10px 0;
+    border-radius: 5px;    
+    width: 250px;
+  }
+  
+  .form__submitBtn {
+    margin:10px auto;
+  }
+}

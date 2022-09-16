@@ -14,7 +14,7 @@ function Main(props: any) {
       {props.isLoading ? (
         <Preloader />
       ) : (
-        <div>
+        <>
           <Table
             filtering={props.filtering}
             renderedLinks={props.renderedLinks}
@@ -27,7 +27,7 @@ function Main(props: any) {
             currentPage={props.currentPage}
             pages={props.pages}
           />
-        </div>
+        </>
       )}
       <Footer />
       <Notification isVisible={props.isNotificationVisible} notificationMessage={props.notificationMessage} />
