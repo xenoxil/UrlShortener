@@ -1,6 +1,4 @@
 import { useRef } from 'react';
-/*import { FormValidator } from '../FormValidator';
-import { loginConfig } from '../../utils/constants';*/
 import Notification from '../Notification/Notification';
 
 function Reglog(props: any) {
@@ -28,7 +26,7 @@ function Reglog(props: any) {
           <div className="card-front">
             <div className="center-wrap">
               <form className="reglog__form">
-                <h4 className="reglog__formHeader">Log In</h4>
+                <h2 className="reglog__formHeader">Log In</h2>
                 <div className="reglog__inputContainer">
                   <input
                     type="email"
@@ -58,7 +56,7 @@ function Reglog(props: any) {
           <div className="card-back">
             <div className="center-wrap">
               <form className="reglog__form">
-                <h4 className="reglog__formHeader">Sign Up</h4>
+                <h2 className="reglog__formHeader">Sign Up</h2>
                 <div className="reglog__inputContainer">
                   <input
                     type="email"

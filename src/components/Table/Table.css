@@ -17,7 +17,7 @@
 .table__linkCell {
   text-overflow: ellipsis;
   overflow: hidden;
-  width: 500px;
+  max-width: 500px;
   word-wrap: none;
   white-space: nowrap;
 }

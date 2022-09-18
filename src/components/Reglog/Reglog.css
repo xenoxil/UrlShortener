@@ -171,6 +171,7 @@
 .reglog__formHeader {
   font-weight: 600;
   margin: 60px auto 0;
+  font-size: 16px;
 }
 
 .reglog__inputContainer {

@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  background-color: #1f2029;  
 }
 
 *,
@@ -14,6 +15,7 @@ body {
 @import url('./components/Footer/Footer.css');
 @import url('./components/Header/Header.css');
 @import url('./components/Form/Form.css');
+@import url('./components/PageNotFound/PageNotFound.css');
 @import url('./components/Notification/Notification.css');
 @import url('./components/Pagination/Pagination.css');
-@import url('./fonts/fonts.css')
+@import url('./fonts/fonts.css');
