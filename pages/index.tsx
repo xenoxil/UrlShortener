@@ -1,19 +1,22 @@
 import React from 'react';
+import {observer} from 'mobx-react-lite'
 import Footer from '../src/components/Footer/Footer';
 import Header from '../src/components/Header/Header';
 import Form from '../src/components/Form/Form';
 import Notification from '../src/components/Notification/Notification';
+import NotificationStore from '../src/store/notificationStore';
 
 
-function Main(props: any) {
+const  Main = observer(()=>{
   return (
     <section className="section__main">
-      <Header userEmail={props.userEmail} logOut={props.logOut} />
-      <Form shortLink={props.shortLink} squeeze={props.squeeze} buttonDisableState={props.buttonDisableState} />      
+      <Header />
+      <Form />
       <Footer />
-      <Notification isVisible={props.isNotificationVisible} notificationMessage={props.notificationMessage} />
+      <Notification isVisible={NotificationStore.visibility} notificationMessage={NotificationStore.message} />
     </section>
   );
-}
+
+}) 
 
 export default Main;

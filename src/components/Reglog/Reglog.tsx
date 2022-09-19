@@ -1,20 +1,68 @@
 import { useRef } from 'react';
-import Notification from '../Notification/Notification';
+import { observer } from 'mobx-react-lite';
+import { useRouter } from 'next/router';
 
-function Reglog(props: any) {
+import Notification from '../Notification/Notification';
+import mainStore from '../../store/mainStore';
+import notificationStore from '../../store/notificationStore';
+import mainApi from '../../utils/Api';
+
+const Reglog = observer(() => {
   const emailReg = useRef<any>();
   const passwordReg = useRef<any>();
   const emailLog = useRef<any>();
   const passwordLog = useRef<any>();
+  const router = useRouter();
 
-  function handleSubmitLogin(e: any): void {
-    e.preventDefault();
-    props.onLogin(emailLog.current.value, passwordLog.current.value);
+
+  function handleLoginClick(email: string, password: string) {    
+    mainStore.setButtonDisableState(true);
+    mainApi
+      .login(email, password)
+      .then((res) => {
+        notificationStore.handlingNotification('Successfull log in');
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('access_token', res.access_token);
+        localStorage.setItem('token_type', res.token_type);
+        mainStore.setUserEmail(email);
+        mainStore.setLoggedInState(true);
+        router.push('/')        
+      })
+      .catch((err) => {
+        notificationStore.handlingNotification('Error' + err);
+        console.log('Ошибка:' + err);
+      })
+      .finally(() => {
+        mainStore.setButtonDisableState(false);
+      });
+  }
+
+  function handleRegisterClick(email: string, password: string) {
+    mainStore.setButtonDisableState(true);
+    mainApi
+      .register(email, password)
+      .then(() => {
+        notificationStore.handlingNotification('Successfull register');
+        handleLoginClick(email, password);
+      })
+      .catch((err) => {
+        notificationStore.handlingNotification('Error' + err);
+        console.log('Ошибка:' + err);
+      })
+      .finally(() => {
+        mainStore.setButtonDisableState(false);
+      });
+  }
+
+
+  function handleSubmitLogin(e: any) {
+    e.preventDefault();    
+     handleLoginClick(emailLog.current.value, passwordLog.current.value)     
   }
 
   function handleSubmitRegister(e: any): void {
     e.preventDefault();
-    props.onRegister(emailReg.current.value, passwordReg.current.value);
+    handleRegisterClick(emailReg.current.value, passwordReg.current.value);
   }
 
   return (
@@ -47,7 +95,10 @@ function Reglog(props: any) {
                     ref={passwordLog}
                   />
                 </div>
-                <button className="reglog__submitBtn" onClick={handleSubmitLogin} disabled={props.buttonDisableState}>
+                <button
+                  className="reglog__submitBtn"
+                  onClick={handleSubmitLogin}
+                  disabled={mainStore.buttonDisableState}>
                   submit
                 </button>
               </form>
@@ -80,7 +131,7 @@ function Reglog(props: any) {
                 <button
                   className="reglog__submitBtn"
                   onClick={handleSubmitRegister}
-                  disabled={props.buttonDisableState}>
+                  disabled={mainStore.buttonDisableState}>
                   submit
                 </button>
               </form>
@@ -88,9 +139,9 @@ function Reglog(props: any) {
           </div>
         </div>
       </div>
-      <Notification isVisible={props.isNotificationVisible} notificationMessage={props.notificationMessage} />
+      <Notification isVisible={notificationStore.visibility} notificationMessage={notificationStore.message} />
     </section>
   );
-}
+});
 
 export default Reglog;

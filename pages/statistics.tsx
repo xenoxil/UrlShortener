@@ -9,9 +9,49 @@ import NotificationStore from '../src/store/notificationStore';
 
 function Statistic(props: any) {
 
+  /*  function handleFiltering(ID: number, link: string, countFilter: string) {
+        setButtonDisableState(true);
+        let filteredStats = stats;
+        if (ID > 0) {
+          filteredStats = stats.filter((linkObject: any) => {
+            return linkObject.id.toString().includes(ID);
+          });
+        }
+        if (link.length > 0) {
+          filteredStats = filteredStats.filter((linkObject: any) => {
+            return linkObject.target.includes(link);
+          });
+        }
+        if (countFilter === 'ASC') {
+          filteredStats.sort((a: any, b: any) => {
+            return a.counter - b.counter;
+          });
+        } else if (countFilter === 'DESC') {
+          filteredStats.sort((a: any, b: any) => {
+            return b.counter - a.counter;
+          });
+        }
+        setMiddleResult(filteredStats);
+        handlingNotification('Successful filtering');
+        setCurrentPage(1);
+        setButtonDisableState(false);
+      }
+
+      useEffect(() => {
+        setRenderedLinks(middleResult.slice(firstLinkIndex, lastLinkIndex));
+      }, [currentPage, middleResult]);
+    
+      useEffect(() => {
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(middleResult.length / linksPerPage); i++) {
+          pageNumbers.push(i);
+        }
+        setPages(pageNumbers);
+      }, [middleResult]);*/
+
   return (
     <section className="section__main">
-      <Header userEmail={props.userEmail} logOut={props.logOut} />      
+      <Header/>      
       {props.isLoading ? (
         <Preloader />
       ) : (
