@@ -21,6 +21,9 @@ class mainStore {
   setLoggedInState(state: boolean) {
     this.loggedInState = state;
   }
+  setIsLoading(state:boolean){
+    this.isLoading = state;
+  }
   
   }
 

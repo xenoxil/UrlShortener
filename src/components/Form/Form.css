@@ -1,5 +1,11 @@
 .form__linkShortener{
-  margin:20vh 0 17vh;
+  margin:20vh 0 30vh;
+}
+
+@media screen and (max-width:768px) {
+  .form__linkShortener{
+    margin:20vh 0 17vh;
+  }
 }
 
 .form__container {

@@ -6,13 +6,13 @@ import { useRouter } from 'next/router';
 
 const  Header = observer (()=>{
 
-  const router = useRouter();
-  console.log(router);
+  const router = useRouter();  
 
   function handleLogoutClick() {
     localStorage.clear();  
     mainStore.setLoggedInState(false);  
     notificationStore.handlingNotification('Successfull log out');
+    router.push('reg-log');
     
   }
 

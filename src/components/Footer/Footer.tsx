@@ -16,7 +16,7 @@ function Footer() {
                 target="_blank"
                 rel="nofollow noopener noreferrer"
                 className="link">
-                Резюме
+                CV
               </a>
             </li>
           </ul>
