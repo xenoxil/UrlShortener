@@ -5,12 +5,18 @@ import Form from '../Form/Form';
 import Notification from '../Notification/Notification';
 import Pagination from '../Pagination/Pagination';
 import Preloader from '../Preloader/Preloader';
+import { useLayoutEffect } from 'react';
 
 function Main(props: any) {
+  useLayoutEffect(() => {}, []);
   return (
-    <section className="section__main">
+    <section className='section__main'>
       <Header userEmail={props.userEmail} logOut={props.logOut} />
-      <Form shortLink={props.shortLink} squeeze={props.squeeze} buttonDisableState={props.buttonDisableState} />
+      <Form
+        shortLink={props.shortLink}
+        squeeze={props.squeeze}
+        buttonDisableState={props.buttonDisableState}
+      />
       {props.isLoading ? (
         <Preloader />
       ) : (
@@ -30,7 +36,10 @@ function Main(props: any) {
         </>
       )}
       <Footer />
-      <Notification isVisible={props.isNotificationVisible} notificationMessage={props.notificationMessage} />
+      <Notification
+        isVisible={props.isNotificationVisible}
+        notificationMessage={props.notificationMessage}
+      />
     </section>
   );
 }

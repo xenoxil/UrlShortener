@@ -1,3 +1,5 @@
+import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
+
 export class Api {
   _options: any;
   _headers: any;
@@ -6,80 +8,48 @@ export class Api {
     this._options = options;
     this._headers = this._options.headers;
   }
-
-  register(email: string, password: string) {
-    return fetch(`${this._options.baseUrl}/register?username=${email}&password=${password}`, {
-      method: 'POST',
+  makeConfig(
+    url: string,
+    method: string,
+    additionalHeaders: AxiosRequestHeaders | {},
+    data: unknown | undefined,
+  ): AxiosRequestConfig {
+    return {
+      url: `${this._options.baseUrl}${url}`,
+      method,
+      withCredentials: true,
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
+        ...additionalHeaders,
       },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(res.status);
-      }
-    });
+      data,
+    };
+  }
+
+  register(email: string, password: string, name: string) {
+    return axios(this.makeConfig('/signup', 'post', {}, { email, password, name }));
   }
 
   login(email: string, password: string) {
-    return fetch(`${this._options.baseUrl}/login`, {
-      method: 'POST',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',        
-      },
-      body: `username=${email}&password=${password}`,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(res.status);
-      }
-    });
+    return axios(this.makeConfig('/signin', 'post', {}, { email, password }));
   }
 
   //получаем короткую ссылку
-  getSqueeze(link: string, token: string) {
-    return fetch(`${this._options.baseUrl}/squeeze?link=${link}`, {
-      method: 'POST',
-      headers: {
-        accept: 'application/json',
-        authorization: 'Bearer ' + token,
-      },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(`${res.status}`);
-      }
-    });
+  getSqueeze(link: string) {
+    return axios(this.makeConfig('/links', 'post', {}, { longLink: link }));
   }
   //получаем статистику по ссылкам
-  getStatistics(token: string, offset: number, limit: number) {
-    return fetch(`${this._options.baseUrl}/statistics?order=asc_short&offset=${offset}&limit=${limit}`, {
-      headers: {
-        accept: 'application/json',
-        authorization: 'Bearer ' + token,
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Ошибка: ${res.status}`);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  getStatistics() {
+    return axios(this.makeConfig('/links', 'get', {}, undefined));
+  }
+  getUserInfo() {
+    return axios(this.makeConfig('/users/me', 'get', {}, undefined));
   }
 }
 
 const mainApi = new Api({
-  // baseUrl: 'http://localhost:3001',
-  baseUrl: 'http://79.143.31.216',
+  baseUrl: 'http://localhost:3000',
+  // baseUrl: 'http://79.143.31.216',
   headers: {
     'Content-Type': 'application/json',
   },
