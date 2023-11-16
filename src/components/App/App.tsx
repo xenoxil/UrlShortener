@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Reglog from '../Reglog/Reglog';
 import Main from '../Main/Main';
@@ -11,7 +10,6 @@ function App() {
   const [user, setUser] = useState('');
   const [stats, setStats] = useState<any[]>([]);
   const navigate = useNavigate();
-  const [token, setToken] = useState('');
   const [shortLink, setShortLink] = useState('');
   const [notificationVisibility, setNotificationVisibility] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
@@ -31,54 +29,45 @@ function App() {
     setCurrentPage(pageNumber);
   }
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     document.title = `UrlShortener`;
-    if (localStorage.getItem('access_token')) {
-      setUser(localStorage.getItem('userEmail') ?? '');
-      setToken(localStorage.getItem('access_token') ?? '');
-      setLoggedIn(true);
-      navigate('/');
-      setIsLoading(true);
-      mainApi
-        .getStatistics(localStorage.getItem('access_token') ?? '', 1, 500)
-        .then((stats) => {
-          setStats(stats);
-          setMiddleResult(stats);
-          setRenderedLinks(stats.slice(firstLinkIndex, lastLinkIndex));
-          setIsLoading(false);
-          mainApi
-            .getStatistics(localStorage.getItem('access_token') ?? '', 500, 5000)
-            .then((res: any) => {
-              setStats(stats.concat(res));
-              setMiddleResult(stats.concat(res));
-            })
-            .catch((err) => console.log('Ошибка:', err));
-        })
-        .catch((err) => console.log('Ошибка:', err));
-    }
+    Promise.all([mainApi.getUserInfo(), mainApi.getStatistics()])
+      .then((res) => {
+        const userInfo = res[0].data.data;
+        const links = res[1].data.data;
+        setUser(userInfo.email);
+        setLoggedIn(true);
+        navigate('/');
+        setStats(links);
+        setMiddleResult(links);
+        setRenderedLinks(links.slice(firstLinkIndex, lastLinkIndex));
+        setIsLoading(false);
+      })
+      .catch((err) => console.log('Ошибка:', err));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setRenderedLinks(middleResult.slice(firstLinkIndex, lastLinkIndex));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, middleResult]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(middleResult.length / linksPerPage); i++) {
       pageNumbers.push(i);
     }
     setPages(pageNumbers);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [middleResult]);
 
-  function handleLoginClick(email: string, password: string) {
+  function handleLoginClick(email: string, password: string, name: string) {
     setButtonDisableState(true);
     mainApi
       .login(email, password)
       .then((res) => {
         handlingNotification('Successfull log in');
         localStorage.setItem('userEmail', email);
-        localStorage.setItem('access_token', res.access_token);
-        localStorage.setItem('token_type', res.token_type);
         setUser(email);
         setLoggedIn(true);
         navigate('/');
@@ -92,13 +81,13 @@ function App() {
       });
   }
 
-  function handleRegisterClick(email: string, password: string) {
+  function handleRegisterClick(email: string, password: string, name: string) {
     setButtonDisableState(true);
     mainApi
-      .register(email, password)
+      .register(email, password, name)
       .then((res) => {
         handlingNotification('Successfull register');
-        handleLoginClick(email, password);
+        handleLoginClick(email, password, name);
       })
       .catch((err) => {
         handlingNotification('Error' + err);
@@ -118,12 +107,12 @@ function App() {
   function squeezeLink(link: string) {
     setButtonDisableState(true);
     mainApi
-      .getSqueeze(link, token)
+      .getSqueeze(link)
       .then((res: any) => {
-        setShortLink(`http://79.143.31.216/s/${res.short}`);
+        setShortLink(`${res.data.shortLink}`);
         handlingNotification('Link has been squeezed');
-        setStats([res, ...stats]);
-        setMiddleResult([res, ...stats]);
+        setStats([res.data, ...stats]);
+        setMiddleResult([res.data, ...stats]);
       })
       .catch((err) => {
         if (err === '422') {
@@ -147,7 +136,7 @@ function App() {
     }
     if (link.length > 0) {
       filteredStats = filteredStats.filter((linkObject: any) => {
-        return linkObject.target.includes(link);
+        return linkObject.longLink.includes(link);
       });
     }
     if (countFilter === 'ASC') {
@@ -174,10 +163,10 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className='App'>
       <Routes>
         <Route
-          path="/reg-log"
+          path='/reg-log'
           element={
             <Reglog
               onRegister={handleRegisterClick}
@@ -191,7 +180,7 @@ function App() {
         />
         <Route element={<ProtectedRoute loggedIn={loggedInState} />}>
           <Route
-            path="/"
+            path='/'
             element={
               <Main
                 userEmail={user}
